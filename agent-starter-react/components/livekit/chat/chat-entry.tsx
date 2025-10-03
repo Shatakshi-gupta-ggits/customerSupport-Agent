@@ -37,8 +37,8 @@ export const ChatEntry = ({
       {(!hideTimestamp || !hideName || hasBeenEdited) && (
         <div className="flex items-center justify-between text-xs text-slate-400">
           {!hideName && (
-            <span className="font-medium">
-              {isUser ? 'You' : 'iPear Assistant'}
+          <span className="font-medium">
+              {isUser ? 'You' : 'Forge Assistant'}
             </span>
           )}
           {!hideTimestamp && (

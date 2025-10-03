@@ -1,8 +1,8 @@
 import type { AppConfig } from './lib/types';
 
 export const APP_CONFIG_DEFAULTS: AppConfig = {
-  companyName: 'iPear',
-  pageTitle: 'iPear Customer Support',
+  companyName: 'Forge',
+  pageTitle: 'Forge Customer Support',
   pageDescription: 'Get help from our AI assistant',
 
   supportsChatInput: true,

@@ -109,7 +109,7 @@ export const SessionView = ({
               </svg>
             </div>
             <div>
-              <h1 className="text-lg font-semibold text-white">iPear Support</h1>
+              <h1 className="text-lg font-semibold text-white">Forge Support</h1>
             </div>
           </div>
           

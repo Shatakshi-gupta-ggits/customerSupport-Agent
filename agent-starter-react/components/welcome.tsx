@@ -32,7 +32,7 @@ export const Welcome = ({
       {/* Main Content */}
       <div className="max-w-sm mx-auto px-6">
         <h1 className="text-2xl font-semibold text-white mb-4">
-          iPear Support
+          Forge Support
         </h1>
         
         <p className="text-slate-300 mb-8">

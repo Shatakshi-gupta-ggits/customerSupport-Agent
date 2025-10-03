@@ -5,6 +5,7 @@ import { AccessToken, type AccessTokenOptions, type VideoGrant } from 'livekit-s
 const API_KEY = process.env.LIVEKIT_API_KEY;
 const API_SECRET = process.env.LIVEKIT_API_SECRET;
 const LIVEKIT_URL = process.env.LIVEKIT_URL;
+const LIVEKIT_ROOM = process.env.LIVEKIT_ROOM; // optional fixed room name
 
 // don't cache the results
 export const revalidate = 0;
@@ -31,7 +32,9 @@ export async function GET() {
     // Generate participant token
     const participantName = 'user';
     const participantIdentity = `voice_assistant_user_${Math.floor(Math.random() * 10_000)}`;
-    const roomName = `voice_assistant_room_${Math.floor(Math.random() * 10_000)}`;
+    const roomName = LIVEKIT_ROOM && LIVEKIT_ROOM.trim().length > 0
+      ? LIVEKIT_ROOM
+      : `voice_assistant_room_${Math.floor(Math.random() * 10_000)}`;
     const participantToken = await createParticipantToken(
       { identity: participantIdentity, name: participantName },
       roomName

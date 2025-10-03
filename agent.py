@@ -3,23 +3,15 @@ import os
 import sys
 from livekit import agents
 from livekit.agents import AgentSession, Agent, RoomInputOptions, RoomOutputOptions
+# Ensure we only import the Silero VAD plugin; remove any references to 'hedra'
 from livekit.plugins import silero
 from PIL import Image
-from livekit.plugins import hedra
-
 
 from pinecone import Pinecone
 from pinecone_plugins.assistant.models.chat import Message
 
-# Load environment variables - try multiple locations
-env_loaded = load_dotenv(".env")
-if not env_loaded:
-    env_loaded = load_dotenv()  # Try default .env location
-
-# Debug: Print current directory and env file status
-print(f"Current directory: {os.getcwd()}")
-print(f"Env file exists: {os.path.exists('.env')}")
-print(f"Env loaded: {env_loaded}")
+# Load environment variables
+load_dotenv(".env")
 
 # Check if required environment variables are set
 required_env_vars = ["PINECONE_API_KEY", "ASSISTANT_NAME", "OPENAI_API_KEY"]
@@ -69,13 +61,6 @@ class Assistant(Agent):
 
 
 async def entrypoint(ctx: agents.JobContext):
-
-    avatar_image = Image.open(r"C:\Users\HP\Desktop\customerSupportAgent\img.png")
-    
-    avatar = hedra.AvatarSession(
-        avatar_image=avatar_image,
-    )
-
     session = AgentSession(
         stt="assemblyai/universal-streaming:en",
         llm="openai/gpt-4.1-mini",
@@ -88,7 +73,7 @@ async def entrypoint(ctx: agents.JobContext):
         agent=Assistant(),
         room_input_options=RoomInputOptions(),
         room_output_options=RoomOutputOptions(
-            audio_enabled=False,   
+            audio_enabled=True,   # Changed to True since no avatar
         )
     )
 
